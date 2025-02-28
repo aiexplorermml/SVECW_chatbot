@@ -17,3 +17,19 @@ df['Question']=df['Question'].str.lower()
 df.['Answer']=df['Answer'].str.lower()
 vectorizer=TfidfVectorizer()
 question_vectors=vectorizer.fit_transform(df['Question'])
+API_KEY = "AIzaSyBsq5Kd5nJgx2fejR77NT8v5Lk3PK4gbH8"
+
+genai.configure(api_key=API_KEY)
+model = genai.GenerativeModel('gemini-1.5-flash')
+def find_closest_question(user_query,vectorizer,question_vectors,df):
+  query_vector=vectorizer.transform([user_query,lower()])
+  similarities=cosine_similarity(query_vector,question_vectors).flatten()
+  best_match_index=similarities.argmax()
+  best_matc_score=similarities[best_match_index]
+  if best_match_score>0.3:
+    return df.iloc[best_match_index]['Answer']
+  else:
+    return None
+st.title("Svecw college Chatbot")
+st.write("Welcome to the college ChatBot! Ask me Anything about the college.")
+for message in 
