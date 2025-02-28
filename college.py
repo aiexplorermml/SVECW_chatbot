@@ -14,7 +14,7 @@ except Exception as e:
   st.stop()
 df=df.fillna("")
 df['Question']=df['Question'].str.lower()
-df.['Answer']=df['Answer'].str.lower()
+df['Answer']=df['Answer'].str.lower()
 vectorizer=TfidfVectorizer()
 question_vectors=vectorizer.fit_transform(df['Question'])
 API_KEY = "AIzaSyBsq5Kd5nJgx2fejR77NT8v5Lk3PK4gbH8"
