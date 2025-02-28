@@ -3,7 +3,7 @@ import pandas as pd
 import google.generativeai as genai
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
-set.set_page_config(page_title="Svecw College Chatbot",layout="centered")
+st.set.set_page_config(page_title="Svecw College Chatbot",layout="centered")
 if "messages" not in st.session_state:
   st.session_state.messages=[]
 csv_url="svecw_details.csv"
@@ -22,7 +22,7 @@ API_KEY = "AIzaSyBsq5Kd5nJgx2fejR77NT8v5Lk3PK4gbH8"
 genai.configure(api_key=API_KEY)
 model = genai.GenerativeModel('gemini-1.5-flash')
 def find_closest_question(user_query,vectorizer,question_vectors,df):
-  query_vector=vectorizer.transform([user_query,lower()])
+  query_vector=vectorizer.transform([user_query.lower()])
   similarities=cosine_similarity(query_vector,question_vectors).flatten()
   best_match_index=similarities.argmax()
   best_match_score=similarities[best_match_index]
